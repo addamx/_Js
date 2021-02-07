@@ -46,7 +46,7 @@
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "node-gyp": "^3.6.2",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.13.1",
     "postcss-loader": "^2.0.9",
     "prop-types": "^15.6.0",
     "react-rating": "^0.9.1",
