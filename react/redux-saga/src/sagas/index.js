@@ -35,23 +35,6 @@ function throwError() {
   throw Error();
 }
 
-function* authorize(isSuccess) {
-  try {
-    yield delay(2000);
-    const result = isSuccess ? yield call(promiseSucc, 200) : yield call(throwError);
-    yield put({type: 'LOGIN_SUCCESS'})
-    // return result; // 由于authorize被fork调用, 不需返回值
-  } catch(error) {
-    yield delay(2000);
-    yield put({type: 'LOGIN_ERROR'})
-  } finally {
-    if (yield cancelled()) {
-      // 重置设置, 譬如将reducer的isLogining改为false
-      console.log('LOGIN is cancelled')
-    }
-  }
-}
-
 /**
  * call, put 都是为了方便测试, call无需真正地发起真实业务请求, put无需模拟dispatch
  * 直接将generator.next().value结果与call/put的返回值对比即可;
@@ -86,6 +69,23 @@ export function* testEffect() {
     yield call(throwError)
   } catch(error) {
     yield put({type: 'CATCH_ERROR', payload: 403})
+  }
+}
+
+function* authorize(isSuccess) {
+  try {
+    yield delay(2000);
+    const result = isSuccess ? yield call(promiseSucc, 200) : yield call(throwError);
+    yield put({type: 'LOGIN_SUCCESS'})
+    // return result; // 由于authorize被fork调用, 不需返回值
+  } catch(error) {
+    yield delay(2000);
+    yield put({type: 'LOGIN_ERROR'})
+  } finally {
+    if (yield cancelled()) {
+      // 重置设置, 譬如将reducer的isLogining改为false
+      console.log('LOGIN is cancelled')
+    }
   }
 }
 

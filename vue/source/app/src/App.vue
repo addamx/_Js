@@ -1,21 +1,39 @@
 <template>
   <div id="app">
-    <img
-      alt="Vue logo"
-      src="./assets/logo.png"
-    >
-    <HelloWorld msg="Welcome to Your Vue.js App">
-      <template slot="test">
-        <v-text :text="test" />
-      </template>
-    </HelloWorld>
+    <img alt="Vue logo" src="./assets/logo.png" />
 
-    <span>c:{{c}}</span>
-    <span>b: {{b}}</span>
-    <p>{{renderD()}}</p>
+    <span>c:{{ c }}</span>
+    <span>b: {{ b }}</span>
+    <p>{{ renderD() }}</p>
     <button @click="a = a + 1">a+</button>
     <button @click="b = b + 1">b+</button>
 
+    <transition :name="transitionName" :duration="2000">
+      <keep-alive>
+        <div>
+          <HelloWorld v-if="a % 2 === 0" msg="偶数" testarr="aa">
+            <template slot="test">
+              <v-text :text="test" />
+            </template>
+          </HelloWorld>
+
+          <HelloWorld v-else msg="奇数" testarr="aa">
+            <template slot="test">
+              <v-text :text="test" />
+            </template>
+          </HelloWorld>
+        </div>
+      </keep-alive>
+    </transition>
+
+    <!-- <transition :name="transitionName"  :duration="2000">
+      <HelloWorld v-if="a%2!==0" msg="slide-right" testarr="aa">
+        <template slot="test">
+
+          <v-text :text="test" />
+        </template>
+      </HelloWorld>
+    </transition> -->
   </div>
 </template>
 
@@ -23,11 +41,12 @@
 import HelloWorld from "./components/HelloWorld.vue";
 import VText from "./components/text";
 
+let i = 0;
 export default {
   name: "App",
   components: {
     HelloWorld,
-    VText,
+    VText
   },
   data() {
     return {
@@ -38,8 +57,13 @@ export default {
   },
   computed: {
     c() {
-      console.log(111)
+      console.log(111);
       return this.a + 1;
+    },
+    transitionName() {
+      const res = String(this.a);
+      console.log(res);
+      return res;
     }
   },
   mounted() {
@@ -47,8 +71,8 @@ export default {
   },
   methods: {
     renderD() {
-      console.log('renderD')
-      return 'dfd';
+      console.log("renderD");
+      return "dfd";
     }
   }
 };

@@ -13,7 +13,7 @@
     "@yl/mform": "^1.0.61",
     "@yl/vue-saas-layout": "^1.1.0",
     "core-js": "^3.6.5",
-    "vue": "2.5.17"
+    "vue": "./vue"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.4.0",
