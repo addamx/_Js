@@ -87,7 +87,7 @@ fn variable_order() {
     // 解引用
     assert_eq!(5, *b);
     // 函数变量引用
-    brorrow_variable(&ss);
+    borrow_variable(&ss);
     // 可变引用
     let mut sss = String::from("鸡汤来啦");
     change(&mut sss);
@@ -99,7 +99,7 @@ fn variable_order() {
     let r2 = &mut s;
 }
 
-fn brorrow_variable(s: &String) -> usize {
+fn borrow_variable(s: &String) -> usize {
     s.len()
 } // 这里，s 离开了作用域。但因为它并不拥有引用值的所有权，
   // 所以什么也不会发生，不会销毁s
@@ -155,7 +155,7 @@ fn struct_fun() {
     //username 所有权被转移给了 user2，导致了 user1 无法再被使用，但是并不代表 user1 内部的其它字段不能被继续使用
     let user1 = User {
         email: String::from("someone@example.com"),
-        username: String::from("someusername123"),
+        username: String::from("some@username123"),
         active: true,
         sign_in_count: 1,
     };
@@ -278,7 +278,7 @@ enum Coin {
     Dime,
     Quarter(UsState), // 25美分硬币
 }
-fn controll_fun() {
+fn control_fun() {
     // match
     fn value_in_cents(coin: Coin) -> u8 {
         match coin {
@@ -384,5 +384,5 @@ fn controll_fun() {
 }
 
 fn main() {
-    controll_fun();
+    control_fun();
 }
