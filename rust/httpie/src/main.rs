@@ -25,7 +25,7 @@ enum subCommand {
 #[derive(Parser, Debug)]
 struct Get {
   /// HTTP 请求的 URL
-  url: String;
+  url: String
 }
 
 // post 子命令。需要输入一个 url，和若干个可选的 key=value，用于提供 json body
