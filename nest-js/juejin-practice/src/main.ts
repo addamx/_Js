@@ -7,6 +7,8 @@ import {
 import { AppModule } from './app.module';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 
+declare const module: any;
+
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
@@ -19,6 +21,12 @@ async function bootstrap() {
   });
   // 全局拦截器
   app.useGlobalInterceptors(new TransformInterceptor());
+
+  if (module.hot) {
+    module.hot.accept();
+    module.hot.dispose(() => app.close());
+  }
+
   await app.listen(3005);
 }
 bootstrap();
