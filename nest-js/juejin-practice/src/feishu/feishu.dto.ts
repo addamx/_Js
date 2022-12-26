@@ -5,10 +5,10 @@ export class FeishuMessageDto {
   @ApiProperty({ example: 'email' })
   receive_id_type: RECEIVE_TYPE;
 
-  @ApiProperty({ example: 'cookieboty@qq.com' })
+  @ApiProperty({ example: 'addamx@outlook.com' })
   receive_id?: string;
 
-  @ApiProperty({ example: `{\"text\":\"test content\"}` })
+  @ApiProperty({ example: `{\"text\":\"test contentxx\"}` })
   content?: string;
 
   @ApiProperty({ example: 'text', enum: MSG_TYPE })

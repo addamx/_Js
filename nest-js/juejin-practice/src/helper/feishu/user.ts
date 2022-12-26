@@ -35,7 +35,7 @@ export const messages = async (
     url: `/im/v1/messages`,
     method: 'POST',
     query: {
-      received_id_type: receiveIdType,
+      receive_id_type: receiveIdType,
     },
     params,
     headers: {

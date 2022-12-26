@@ -42,18 +42,6 @@ export const methodV = async ({
   } else {
     sendUrl = `${FEISHU_URL}${url}`;
   }
-  console.log('🚀', {
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      ...headers,
-    },
-    url: sendUrl,
-    method,
-    params: query,
-    data: {
-      ...params,
-    },
-  });
   try {
     return axios({
       headers: {
