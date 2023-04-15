@@ -17,15 +17,7 @@ import { ConfigService } from '@nestjs/config';
   version: '1',
 })
 export class UserController {
-  constructor(
-    private readonly userService: UserService,
-    private readonly configService: ConfigService,
-  ) {}
-
-  @Get('getTestName')
-  getTestName(): string {
-    return this.configService.get('TEST_VALUE').name;
-  }
+  constructor(private readonly userService: UserService) {}
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
