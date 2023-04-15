@@ -1,0 +1,2 @@
+- ` callHook(vm, 'beforeMount')` 全局钩子？
+- performance

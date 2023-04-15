@@ -3,17 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "vue-cli-service serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@yl/app-jssdk": "^1.0.1",
-    "@yl/area": "^1.0.0",
-    "@yl/mform": "^1.0.61",
-    "@yl/vue-saas-layout": "^1.1.0",
-    "core-js": "^3.6.5",
-    "vue": "./vue"
+    "core-js": "^3.6.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.4.0",
