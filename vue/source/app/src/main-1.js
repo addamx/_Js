@@ -1,7 +1,5 @@
-import Vue from 'vue'
+import Vue from './mini-vue/index.js'
 import App from './App.vue'
-
-// Vue.config.productionTip = false
 
 window.Vue = Vue;
 

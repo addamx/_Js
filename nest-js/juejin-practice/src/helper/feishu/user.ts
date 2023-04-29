@@ -1,10 +1,10 @@
 import { methodV } from '../../utils/request';
 export enum RECEIVE_TYPE {
-  'open_id',
-  'user_id',
-  'union_id',
-  'email',
-  'chat_id',
+  open_id,
+  user_id,
+  union_id,
+  email,
+  chat_id,
 }
 
 export enum MSG_TYPE {

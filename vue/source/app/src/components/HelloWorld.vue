@@ -53,6 +53,13 @@ export default {
       this.msg = str;
     },
   },
+  render(h) {
+    return h(
+      'h1',
+      {},
+      'test'
+    )
+  }
 };
 </script>
 
