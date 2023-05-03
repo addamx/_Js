@@ -5,9 +5,10 @@ export default class Watcher {
 
   constructor(vm, expOrFn, cb) {
     this.vm = vm;
-    this.getter = expOrFn;
+    this.getter = typeof expOrFn === 'function' ? expOrFn : () => vm[expOrFn];
     this.value = this.get();
     this.newDepIds = new Set();
+    this.dirty = false;
     this.cb = cb || function () { };
   }
 
@@ -38,4 +39,7 @@ export default class Watcher {
       this.cb.call(this.vm, value, oldValue);
     }
   }
+  // evaluate() {
+  //   this.value = this.get();
+  // }
 }

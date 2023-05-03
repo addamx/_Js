@@ -1,7 +1,7 @@
 // @ts-check
 
 import { callHook, mountComponent } from "./lifecycle";
-import { createElement } from "./platform/web/runtime/node-ops";
+import Watcher from "./observer/watcher";
 import { initRender } from "./render";
 import { initState } from "./state";
 
@@ -40,6 +40,7 @@ class Vue {
     callHook(vm, 'beforeCreate');
     // initInjections(vm);
     initState(vm);
+    callHook(vm, 'created')
 
     if (vm.$options.el) {
       vm.$mount(vm.$options.el)
@@ -51,6 +52,10 @@ class Vue {
       el = document.querySelector(el)
     }
     return mountComponent(this, el);
+  }
+
+  $watch(expOrFn, cb) {
+    new Watcher(this, expOrFn, cb);
   }
 
   /**
@@ -76,7 +81,6 @@ class Vue {
       vm.$el = vm.__patch__(prevVnode, vnode)
     }
   }
-
 
   __patch__(oldVnode, vnode) {
 
@@ -148,6 +152,7 @@ class Vue {
     }
     return vnode.elm;
   }
+
 }
 
 function initInternalComponent(vm, options) {
@@ -160,23 +165,6 @@ function initInternalComponent(vm, options) {
     opts.render = options.render
   }
 }
-
-
-
-// ore/instance/lifecycle.ts
-function initLifecycle(vm) {
-  let parent = vm.$options.parent;
-  vm.$parent = parent
-  vm.$root = parent ? parent.$root : vm;
-  vm.$children = [];
-}
-
-// core/instance/events.ts
-function initEvents(vm) {
-  //
-}
-
-
 
 // core/global-api/index.ts
 function initGlobalAPI(Vue) {

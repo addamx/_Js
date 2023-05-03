@@ -2,10 +2,9 @@ import Dep from "./dep";
 
 export class Observer {
   dep;
-  vmCOunt;
+
   constructor(value) {
     this.dep = new Dep();
-    this.vmCount = 0;
 
     value.__ob__ = this;
 
@@ -21,7 +20,7 @@ export class Observer {
 
 
 export function observe(value) {
-  if (value && Object.prototype.hasOwnProperty(value, '__ob__') && value.__ob__ instanceof Observer) {
+  if (value && Object.prototype.hasOwnProperty.call(value, '__ob__') && value.__ob__ instanceof Observer) {
     return value.__ob__;
   }
   if (typeof value !== 'object') return;

@@ -6,21 +6,23 @@ export default {
     return {
       title: 'This is APP component',
       dataA: 1,
-      dataB: 2
+      dataB: 2,
+      obj1: {a: 1, b: 2},
+      arr: []
     };
   },
   computed: {
     computedC() {
-      this.log('exec computedC')
+      console.log('exec computedC')
       return this.dataA + this.dataB;
     },
   },
   watch: {
-    dataA(val) {
-      this.log('exec watch dataA')
+    dataA() {
+      console.log('exec watch dataA')
     },
-    computedC(val) {
-      this.log('exec watch computedC')
+    computedC() {
+      console.log('exec watch computedC')
     },
   },
   beforeCreate() {
@@ -28,41 +30,38 @@ export default {
     console.log('exec beforeCreate')
   },
   created() {
-    this.log('exec created')
+    console.log('exec created')
   },
   beforeMount() {
-    this.log('exec beforeMount')
+    console.log('exec beforeMount')
   },
   mounted() {
-    this.log('exec mounted')
+    console.log('exec mounted')
     console.log('===================')
     window.app = this;
   },
   beforeUpdate() {
-    this.log('exec beforeUpdate')
+    console.log('exec beforeUpdate')
   },
   updated() {
-    this.log('exec updated')
+    console.log('exec updated')
   },
   beforeDestroy() {
-    this.log('exec beforeDestroy')
+    console.log('exec beforeDestroy')
   },
   destroyed() {
-    this.log('exec destroyed')
+    console.log('exec destroyed')
   },
   methods: {
     plusA() {
-      this.log('exec method plusA')
+      console.log('exec method plusA')
       ++this.dataA;
     },
-    log(...args) {
-      console.log(...args)
-    }
   },
   render(h) {
-    this.log('exec render')
+    console.log('exec render')
 
-    const {title, computedC = 1} = this
+    const {dataA, computedC = 1,arr} = this
 
     return h(
       'div',
@@ -72,11 +71,12 @@ export default {
         },
       },
       [
-        h('span', {}, [title]),
+        arr[0]?.prop1,
+        h('span', {}, [`dataA is: ${dataA}`]),
         h(
           'div',
           {},
-          [computedC]
+          [`computedC is: ${computedC}`]
         ),
         h(
           'button',

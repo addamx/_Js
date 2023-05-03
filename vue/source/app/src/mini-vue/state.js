@@ -1,4 +1,5 @@
 import { observe } from "./observer";
+import Watcher from "./observer/watcher";
 
 export function initState(vm) {
   const opts = vm.$options;
@@ -7,8 +8,8 @@ export function initState(vm) {
 
   opts.methods && initMethods(vm);
   opts.data && initData(vm);
-  // opts.computed && initComputed(vm);
-  // opts.watch && initWatch(vm);
+  opts.computed && initComputed(vm);
+  opts.watch && initWatch(vm);
 }
 
 function initMethods(vm) {
@@ -20,8 +21,7 @@ function initMethods(vm) {
 
 function initData(vm) {
   const data = vm._data = vm.$options.data?.() || {};
-  const ob = observe(data);
-  ob && ob.vmCount++;
+  observe(data);
 
   Object.keys(data).forEach(key => {
     proxy(vm, '_data', key);
@@ -29,14 +29,41 @@ function initData(vm) {
 }
 
 function initComputed(vm) {
+  // function createComputedGetter(key) {
+  //   return function computedGetter() {
+  //     const watcher = vm._computedWatchers?.[key];
+  //     if (watcher) {
+  //       if (watcher.dirty) {
+  //         watcher.evaluate();
+  //       }
+  //       if (Dep.target) {
+  //         watcher.depend();
+  //       }
+  //       return watcher.value;
+  //     }
+  //   }
+  // }
+
+  const watchers = vm._computedWatchers = {};
   const computed = vm.$options.computed ?? {};
   Object.entries(computed).forEach(([key, fn]) => {
+    watchers[key] = new Watcher(vm, fn, () => undefined);
+
     Object.defineProperty(vm, key, {
       get: fn.bind(vm),
+      // get: createComputedGetter(key),
       set: () => undefined
     })
   })
 }
+
+function initWatch(vm) {
+  const watch = vm.$options.watch ?? {};
+  Object.entries(watch).forEach(([key, fn]) => {
+    vm.$watch(key, fn.bind(vm));
+  })
+}
+
 
 const sharedPropertyDefinition = {
   enumerable: true,
