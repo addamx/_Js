@@ -1,1 +1,1 @@
-import './cus-vue/04.complicated-observe';
+import './cus-vue/04.complex-observe';
