@@ -62,7 +62,6 @@ export default {
     console.log('exec render')
 
     const {dataA, computedC = 1,arr} = this
-
     return h(
       'div',
       {

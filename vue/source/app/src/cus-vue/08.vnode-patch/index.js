@@ -1,9 +1,10 @@
 import Vue from "./vue";
 
-new Vue({
+window.vueRoot = new Vue({
   data: {
     num: 1,
     text: 'Hello World',
+    list: []
   },
   computed: {
     computedText() {
@@ -19,8 +20,8 @@ new Vue({
     }
   },
   mounted() {
-    window.vueRoot = this;
     this.log('mounted');
+    window.vueRoot = this;
   },
   methods: {
     log(...args) {
@@ -31,7 +32,7 @@ new Vue({
     }
   },
   render(h) {
-    const { num, computedText } = this
+    const { num, computedText, list } = this
 
     return h('div', {}, [
       h('h1', {
@@ -40,19 +41,31 @@ new Vue({
         },
       }, computedText),
 
-      `num: ${num}`,
       h('p', {}, [
-        h('button', {
-        on: {
-          click: this.addNum
-        },
-      }, 'add num'),
-      h('button', {
-        on: {
-          click: () => this.num--
-        },
-      }, 'decrease num')
+        h('input', {
+          attrs: {
+            id: 'input1',
+            value: this.text
+          },
+          on: {
+            input: (e) => {
+              this.text = e.target.value
+            }
+          }
+        })
       ]),
+
+      h('p', {},
+        list.map(text => h('div', {
+          style: {
+          border: '1px solid red',
+        }
+      }, text))
+      )
     ])
   }
-}).$mount('#app')
+})
+
+window.vueRoot.$mount('#app')
+
+
