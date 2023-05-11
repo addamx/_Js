@@ -9,8 +9,7 @@ export class Observer {
     value.__ob__ = this;
 
     if (Array.isArray(value)) {
-      //
-    } else {
+          } else {
       Object.keys(value).forEach(key => {
         defineReactive(value, key);
       })

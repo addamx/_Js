@@ -12,6 +12,8 @@ function observe(data, key,) {
       return value
     },
     set(newVal) {
+      const preValue = value;
+      if (newVal === preValue) return;
       value = newVal;
       watchers.forEach(watcher => watcher())
     }
