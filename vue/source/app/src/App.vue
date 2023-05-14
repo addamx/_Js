@@ -1,4 +1,5 @@
 <script>
+import Text from './components/text.vue'
 
 export default {
   name: "App",
@@ -12,18 +13,18 @@ export default {
     };
   },
   computed: {
-    computedC() {
-      console.log('exec computedC')
-      return this.dataA + this.dataB;
-    },
+    // computedC() {
+    //   console.log('exec computedC')
+    //   return this.dataA + this.dataB;
+    // },
   },
   watch: {
-    dataA() {
-      console.log('exec watch dataA')
-    },
-    computedC() {
-      console.log('exec watch computedC')
-    },
+    // dataA() {
+    //   console.log('exec watch dataA')
+    // },
+    // computedC() {
+    //   console.log('exec watch computedC')
+    // },
   },
   beforeCreate() {
     console.log('===================')
@@ -61,7 +62,7 @@ export default {
   render(h) {
     console.log('exec render')
 
-    const {dataA, computedC = 1,arr} = this
+    const {dataA} = this
     return h(
       'div',
       {
@@ -70,13 +71,12 @@ export default {
         },
       },
       [
-        arr[0]?.prop1,
-        h('span', {}, [`dataA is: ${dataA}`]),
-        h(
-          'div',
-          {},
-          [`computedC is: ${computedC}`]
-        ),
+        h(Text, {props: {text: `dataA is: ${dataA}`}},),
+        // h(
+        //   'div',
+        //   {},
+        //   [`computedC is: ${computedC}`]
+        // ),
         h(
           'button',
           {

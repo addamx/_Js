@@ -46,8 +46,15 @@ export default class Vue {
   }
 
   initProps() {
-    const { propsData = {}, props = {} } = this.$options;
+    const { propsData = {} } = this.$options;
     this._props = {};
+    this.updateProps(propsData)
+    observe(this._props);
+    hoistProperty(this, '_props');
+  }
+
+  updateProps(propsData) {
+    const { props = {} } = this.$options;
     Object.entries(props).forEach(([key, { type, default: defaultVal }]) => {
       const propsValue = propsData[key];
       if (type && typeof propsValue !== type) {
@@ -55,7 +62,6 @@ export default class Vue {
       }
       this._props[key] = propsData[key] ?? defaultVal;
     });
-    hoistProperty(this, '_props');
   }
 
   initData() {

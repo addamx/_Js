@@ -7,9 +7,8 @@ new Vue({
     Input
   },
   data: {
-    num: 1,
     text: 'Hello World',
-    list: []
+    fontSize: 16
   },
   computed: {
     computedText() {
@@ -46,7 +45,8 @@ new Vue({
         },
       }, computedText),
 
-      h('p', {}, [
+      h('label', {}, [
+        'text:',
         h(Input, {
           props: {
             value: this.text
@@ -59,10 +59,24 @@ new Vue({
         })
       ]),
 
+      h('label', {}, [
+        'font-size:',
+        h(Input, {
+          props: {
+            value: this.fontSize
+          },
+          on: {
+            input: (val) => {
+              this.fontSize = val
+            }
+          }
+        })
+      ]),
+
       h('p', {}, [h(Text, {
         props: {
           text: this.text,
-          size: 24
+          size: this.fontSize
         }
       })])
     ])

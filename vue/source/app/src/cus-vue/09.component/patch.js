@@ -67,13 +67,23 @@ export function patch(oldVnode, vnode) {
     return document.createComment(vnode.text)
   }
 
-  if (!oldVnode || vnode.component) {
+  if (!oldVnode) {
     return createElement(vnode);
+  }
+
+  if (oldVnode.component && vnode.component && (oldVnode.component === vnode.component)) {
+    if (vnode.data?.hook?.patch) {
+      vnode.data.hook.patch(oldVnode, vnode)
+    }
+    return vnode.el = oldVnode.el;
   }
 
   if (oldVnode.tag !== vnode.tag) {
     oldVnode.el.parentElement.replaceChild(createElement(vnode), oldVnode.el);
   } else {
+    /**
+     * @type {HTMLElement}
+     */
     const el = vnode.el = oldVnode.el;
     const { data: newData = {}, children: newChildren = [] } = vnode;
     const { data: oldData = {}, children: oldChildren = [] } = oldVnode;
@@ -131,15 +141,23 @@ export function patch(oldVnode, vnode) {
           const oldChildNode = oldChildren[i];
           const newChildNode = newChildren[i];
 
+          if (typeof newChildNode === 'string') {
+            const oldChild = el.childNodes[i];
+            if (!oldChild) {
+              el.appendChild(document.createTextNode(newChildNode))
+            } else {
+              oldChild.textContent = newChildNode;
+            }
+            continue;
+          }
 
           if (!oldChildNode) {
             el.appendChild(createElement(newChildNode))
           } else if (!newChildNode) {
             el.removeChild(oldChildNode.el)
           } else {
-            const dom = patch(oldChildNode, newChildren[i])
-
-            if (dom !== oldChildNode.el) {
+            const dom = patch(oldChildNode, newChildNode)
+            if (dom && dom !== oldChildNode.el) {
               el.replaceChild(dom, oldChildNode.el)
             }
           }

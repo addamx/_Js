@@ -44,6 +44,11 @@ function createComponent(tag, data) {
             ...tag,
           });
           child.$mount(); // 生成 $el
+        },
+        patch(oldVnode, vnode) {
+          const child = vnode.componentInstance = oldVnode.componentInstance;
+          const propsData = vnode.data.props ?? {};
+          child.updateProps(propsData);
         }
       }
     },
