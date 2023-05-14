@@ -1,4 +1,4 @@
-import Vue from "./vue";
+import Vue from "./mini-vue/vue";
 import Text from './components/text'
 import Input from './components/input'
 
