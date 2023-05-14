@@ -6,7 +6,6 @@ export default {
     },
   },
   render(h) {
-    console.log(this.value)
     return h('input', {
       attrs: {
         value: this.value

@@ -57,8 +57,11 @@ export default class Vue {
     const { props = {} } = this.$options;
     Object.entries(props).forEach(([key, { type, default: defaultVal }]) => {
       const propsValue = propsData[key];
-      if (type && typeof propsValue !== type) {
-        console.warn(`props ${key} should be ${type}`)
+      if ([String, Number, Boolean].includes(type)) {
+        const typeName = type.toString().match(/^\s*function (\w+)/)[1].toLowerCase();
+        if (typeName !== (typeof propsValue)) {
+          console.warn(`props ${key} should be ${typeName}`);
+        }
       }
       this._props[key] = propsData[key] ?? defaultVal;
     });

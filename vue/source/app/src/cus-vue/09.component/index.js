@@ -63,7 +63,7 @@ new Vue({
         'font-size:',
         h(Input, {
           props: {
-            value: this.fontSize
+            value: String(this.fontSize)
           },
           on: {
             input: (val) => {
@@ -76,7 +76,7 @@ new Vue({
       h('p', {}, [h(Text, {
         props: {
           text: this.text,
-          size: this.fontSize
+          size: +this.fontSize
         }
       })])
     ])
