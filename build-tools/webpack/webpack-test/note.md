@@ -1,8 +1,9 @@
 # command
+
 - `webpack --json` 输出打包信息
 
-
 # webpack
+
 - webpack(options, callback)
 - 生成标准化的options（但没给默认值）: getNormalizedWebpackOptions(rawOptions)
   - file://./node_modules/webpack/lib/webpack.js#62
@@ -19,143 +20,126 @@
   - 定义logger参数
   - 定义文件系统（默认fs）
 - 初始化插件
-```js
+
+```javascript
 if (typeof plugin === "function") {
   plugin.call(compiler, compiler);
 } else {
   plugin.apply(compiler);
 }
 ```
+
 - 给options设置默认值: applyWebpackOptionsDefaults(options)
+
   - 根据 mode 设置options默认值
   - file://./node_modules/webpack/lib/config/defaults.js#137
 - 执行 HOOK compiler.hooks.environment
 - 执行 HOOK compiler.hooks.afterEnvironment
-
 - WebpackOptionsApply().process
+
   - file://./node_modules/webpack/lib/WebpackOptionsApply.js#71
   - 根据新的options，定义compiler的设置，以及辅助插件
     - options.externals
+
       - ExternalsPlugin
-
     - ChunkPrefetchPreloadPlugin
-
     - options.output.chunkFormat
+
       - "array-push"： ArrayPushCallbackChunkFormatPlugin
       - "commonjs": CommonJsChunkFormatPlugin
       - "module": ModuleChunkFormatPlugin
-
     - options.output.enabledChunkLoadingTypes
+
       - EnableChunkLoadingPlugin
-
     - options.output.enabledLibraryTypes
+
       - EnableLibraryPlugin
-
     - output.pathinfo
+
       - ModuleInfoHeaderPlugin
-
     - options.output.clean
-      - CleanPlugin
 
+      - CleanPlugin
     - options.devtool
+
       - EvalSourceMapDevToolPlugin
       - SourceMapDevToolPlugin
       - EvalDevToolModulePlugin
-
     - JavascriptModulesPlugin
-
     - JsonModulesPlugin
-
     - AssetModulesPlugin
-
     - options.experiments.css
+
       - CssModulesPlugin
-
     - EntryOptionPlugin
-
     - HOOK compiler.hooks.entryOption
-
     - RuntimePlugin
-
     - InferAsyncModulesPlugin
-
     - DataUriPlugin
-
     - FileUriPlugin
-
     - CompatibilityPlugin
-
     - HarmonyModulesPlugin
-
     - options.amd
+
       - AMDPlugin
       - RequireJsStuffPlugin
-
     - CommonJsPlugin
-
     - LoaderPlugin
-
     - APIPlugin
-
     - ConstPlugin
-
     - UseStrictPlugin
-
     - options.optimization.splitChunks
+
       - SplitChunksPlugin
-
     - options.optimization.minimize
+
       - options.optimization.minimizer: TerserPlugin
-
     - options.performance
+
       - SizeLimitsPlugin
-
     - TemplatedPathPlugin
-
     - options.cache
+
       - MemoryCachePlugin
-
     - ResolverCachePlugin
-
     - HOOK compiler.hooks.afterPlugins
-
     - HOOK compiler.hooks.afterResolvers
-
 - HOOK compiler.hooks.initialize
-
 - compiler.run()
+
   - HOOK compiler.hooks.beforeRun
   - HOOK compiler.hooks.run
-
 - compiler.compile()
+
   - newCompilationParams
+
     - createNormalModuleFactory
+
       - new NormalModuleFactory
         - hooks
       - HOOK compiler.hooks.normalModuleFactory
-
     - createContextModuleFactory
+
       - new ContextModuleFactory
         - hooks
       - HOOK compiler.hooks.contextModuleFactory.
-
   - HOOK compiler.hooks.beforeCompile
   - HOOK compiler.hooks.compile
-
   - compilation = newCompilation
+
     - new Compilation
       - file://./node_modules/webpack/lib/Compilation.js#433
       - hooks
       - new ModuleGraph()
     - HOOK compiler.hooks.hooks.thisCompilation
     - HOOK compiler.hooks.hooks.compilation
-
   - HOOK compiler.hooks.make
   - HOOK compiler.hooks.finishMake
-
   - compilation.finish()
+
     - new ModuleGraph
   - compilation.seal()
+
     - new ChunkGraph()
     - ChunkGraph.setChunkGraphForModule
     - CPA-HOOKS compilation.hooks.seal
@@ -215,7 +199,6 @@ if (typeof plugin === "function") {
       - getRenderManifest
       - emitAsset
       - CPA-HOOKS compilation.hooks.chunkAsset
-
   - HOOK compiler.hooks.afterCompile
 
 # Hook
