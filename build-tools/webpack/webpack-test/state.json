@@ -1,8 +1,8 @@
 {
-  "hash": "2cce76573fe13e77e546",
+  "hash": "ab459bbf770f993eaa9c",
   "version": "5.82.0",
-  "time": 201,
-  "builtAt": 1685075324926,
+  "time": 477,
+  "builtAt": 1685542010082,
   "publicPath": "auto",
   "outputPath": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/dist",
   "assetsByChunkName": {
@@ -14,14 +14,14 @@
     {
       "type": "asset",
       "name": "main.js",
-      "size": 106,
-      "emitted": false,
-      "comparedForEmit": true,
+      "size": 217,
+      "emitted": true,
+      "comparedForEmit": false,
       "cached": false,
       "info": {
         "javascriptModule": false,
         "minimized": true,
-        "size": 106
+        "size": 217
       },
       "chunkNames": [
         "main"
@@ -35,6 +35,29 @@
       ],
       "auxiliaryChunks": [],
       "isOverSizeLimit": false
+    },
+    {
+      "type": "asset",
+      "name": "version.txt",
+      "size": 5,
+      "emitted": false,
+      "comparedForEmit": true,
+      "cached": false,
+      "info": {
+        "size": 5
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [
+        "main"
+      ],
+      "auxiliaryChunkIdHints": [],
+      "related": {},
+      "chunks": [],
+      "auxiliaryChunks": [
+        179
+      ],
+      "isOverSizeLimit": false
     }
   ],
   "chunks": [
@@ -43,9 +66,9 @@
       "initial": true,
       "entry": true,
       "recorded": false,
-      "size": 148,
+      "size": 214,
       "sizes": {
-        "javascript": 148
+        "javascript": 214
       },
       "names": [
         "main"
@@ -57,8 +80,10 @@
       "files": [
         "main.js"
       ],
-      "auxiliaryFiles": [],
-      "hash": "24bba7afd3c098bb3e10",
+      "auxiliaryFiles": [
+        "version.txt"
+      ],
+      "hash": "2d3fd3a1fbb0e1376a89",
       "childrenByOrder": {},
       "id": 179,
       "siblings": [],
@@ -69,15 +94,15 @@
           "type": "module",
           "moduleType": "javascript/esm",
           "layer": null,
-          "size": 148,
+          "size": 214,
           "sizes": {
-            "javascript": 148
+            "javascript": 214
           },
           "built": true,
           "codeGenerated": true,
           "buildTimeExecuted": false,
           "cached": false,
-          "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js|ed71667dffcf51a50a1fae9386552d5e",
+          "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js|69ae70687dddfa8ab649b4c77312e653",
           "name": "./src/index.js + 1 modules",
           "nameForCondition": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
           "index": 0,
@@ -91,11 +116,13 @@
           "failed": false,
           "errors": 0,
           "warnings": 0,
-          "id": 990,
+          "id": 398,
           "chunks": [
             179
           ],
-          "assets": [],
+          "assets": [
+            "version.txt"
+          ],
           "reasons": [
             {
               "moduleIdentifier": null,
@@ -106,7 +133,7 @@
               "type": "entry",
               "active": true,
               "explanation": "",
-              "userRequest": "./src",
+              "userRequest": "./src/index.js",
               "loc": "main",
               "moduleId": null,
               "resolvedModuleId": null
@@ -121,15 +148,15 @@
               "type": "module",
               "moduleType": "javascript/auto",
               "layer": null,
-              "size": 61,
+              "size": 94,
               "sizes": {
-                "javascript": 61
+                "javascript": 94
               },
               "built": true,
               "codeGenerated": false,
               "buildTimeExecuted": false,
               "cached": false,
-              "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+              "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
               "name": "./src/index.js",
               "nameForCondition": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
               "index": 0,
@@ -149,12 +176,14 @@
               "id": null,
               "issuerId": null,
               "chunks": [],
-              "assets": [],
+              "assets": [
+                "version.txt"
+              ],
               "reasons": [],
               "usedExports": [],
               "providedExports": [],
               "optimizationBailout": [
-                "Statement (ExpressionStatement) with side effects in source code at 3:0-25"
+                "Statement (ExpressionStatement) with side effects in source code at 2:2-29"
               ],
               "depth": 0
             },
@@ -162,15 +191,15 @@
               "type": "module",
               "moduleType": "javascript/auto",
               "layer": null,
-              "size": 87,
+              "size": 120,
               "sizes": {
-                "javascript": 87
+                "javascript": 120
               },
               "built": true,
               "codeGenerated": false,
               "buildTimeExecuted": false,
               "cached": false,
-              "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/plugin-a.js",
+              "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/plugin-a.js",
               "name": "./src/plugin-a.js",
               "nameForCondition": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/plugin-a.js",
               "index": 1,
@@ -181,11 +210,11 @@
               "optional": false,
               "orphan": false,
               "dependent": true,
-              "issuer": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+              "issuer": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
               "issuerName": "./src/index.js",
               "issuerPath": [
                 {
-                  "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+                  "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
                   "name": "./src/index.js",
                   "id": null
                 }
@@ -196,33 +225,35 @@
               "id": null,
               "issuerId": null,
               "chunks": [],
-              "assets": [],
+              "assets": [
+                "version.txt"
+              ],
               "reasons": [
                 {
-                  "moduleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+                  "moduleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
                   "module": "./src/index.js",
                   "moduleName": "./src/index.js",
-                  "resolvedModuleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+                  "resolvedModuleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
                   "resolvedModule": "./src/index.js",
                   "type": "harmony side effect evaluation",
                   "active": true,
                   "explanation": "",
                   "userRequest": "./plugin-a",
-                  "loc": "1:0-33",
+                  "loc": "3:2-35",
                   "moduleId": null,
                   "resolvedModuleId": null
                 },
                 {
-                  "moduleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+                  "moduleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
                   "module": "./src/index.js",
                   "moduleName": "./src/index.js",
-                  "resolvedModuleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+                  "resolvedModuleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
                   "resolvedModule": "./src/index.js",
                   "type": "harmony import specifier",
                   "active": true,
                   "explanation": "",
                   "userRequest": "./plugin-a",
-                  "loc": "3:12-24",
+                  "loc": "5:12-24",
                   "moduleId": null,
                   "resolvedModuleId": null
                 }
@@ -234,7 +265,7 @@
                 "default"
               ],
               "optimizationBailout": [
-                "Statement (ExportDefaultDeclaration) with side effects in source code at 1:0-6:1"
+                "Statement (ExpressionStatement) with side effects in source code at 2:2-29"
               ],
               "depth": 1
             }
@@ -247,7 +278,7 @@
           "moduleIdentifier": "",
           "moduleName": "",
           "loc": "main",
-          "request": "./src"
+          "request": "./src/index.js"
         }
       ]
     }
@@ -257,15 +288,15 @@
       "type": "module",
       "moduleType": "javascript/esm",
       "layer": null,
-      "size": 148,
+      "size": 214,
       "sizes": {
-        "javascript": 148
+        "javascript": 214
       },
       "built": true,
       "codeGenerated": true,
       "buildTimeExecuted": false,
       "cached": false,
-      "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js|ed71667dffcf51a50a1fae9386552d5e",
+      "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js|69ae70687dddfa8ab649b4c77312e653",
       "name": "./src/index.js + 1 modules",
       "nameForCondition": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
       "index": 0,
@@ -278,11 +309,13 @@
       "failed": false,
       "errors": 0,
       "warnings": 0,
-      "id": 990,
+      "id": 398,
       "chunks": [
         179
       ],
-      "assets": [],
+      "assets": [
+        "version.txt"
+      ],
       "reasons": [
         {
           "moduleIdentifier": null,
@@ -293,7 +326,7 @@
           "type": "entry",
           "active": true,
           "explanation": "",
-          "userRequest": "./src",
+          "userRequest": "./src/index.js",
           "loc": "main",
           "moduleId": null,
           "resolvedModuleId": null
@@ -308,15 +341,15 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 61,
+          "size": 94,
           "sizes": {
-            "javascript": 61
+            "javascript": 94
           },
           "built": true,
           "codeGenerated": false,
           "buildTimeExecuted": false,
           "cached": false,
-          "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+          "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
           "name": "./src/index.js",
           "nameForCondition": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
           "index": 0,
@@ -335,12 +368,14 @@
           "id": null,
           "issuerId": null,
           "chunks": [],
-          "assets": [],
+          "assets": [
+            "version.txt"
+          ],
           "reasons": [],
           "usedExports": [],
           "providedExports": [],
           "optimizationBailout": [
-            "Statement (ExpressionStatement) with side effects in source code at 3:0-25"
+            "Statement (ExpressionStatement) with side effects in source code at 2:2-29"
           ],
           "depth": 0
         },
@@ -348,15 +383,15 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 87,
+          "size": 120,
           "sizes": {
-            "javascript": 87
+            "javascript": 120
           },
           "built": true,
           "codeGenerated": false,
           "buildTimeExecuted": false,
           "cached": false,
-          "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/plugin-a.js",
+          "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/plugin-a.js",
           "name": "./src/plugin-a.js",
           "nameForCondition": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/plugin-a.js",
           "index": 1,
@@ -366,11 +401,11 @@
           "cacheable": true,
           "optional": false,
           "orphan": false,
-          "issuer": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+          "issuer": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
           "issuerName": "./src/index.js",
           "issuerPath": [
             {
-              "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+              "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
               "name": "./src/index.js",
               "id": null
             }
@@ -381,33 +416,35 @@
           "id": null,
           "issuerId": null,
           "chunks": [],
-          "assets": [],
+          "assets": [
+            "version.txt"
+          ],
           "reasons": [
             {
-              "moduleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+              "moduleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
               "module": "./src/index.js",
               "moduleName": "./src/index.js",
-              "resolvedModuleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+              "resolvedModuleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
               "resolvedModule": "./src/index.js",
               "type": "harmony side effect evaluation",
               "active": true,
               "explanation": "",
               "userRequest": "./plugin-a",
-              "loc": "1:0-33",
+              "loc": "3:2-35",
               "moduleId": null,
               "resolvedModuleId": null
             },
             {
-              "moduleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+              "moduleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
               "module": "./src/index.js",
               "moduleName": "./src/index.js",
-              "resolvedModuleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+              "resolvedModuleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
               "resolvedModule": "./src/index.js",
               "type": "harmony import specifier",
               "active": true,
               "explanation": "",
               "userRequest": "./plugin-a",
-              "loc": "3:12-24",
+              "loc": "5:12-24",
               "moduleId": null,
               "resolvedModuleId": null
             }
@@ -419,7 +456,7 @@
             "default"
           ],
           "optimizationBailout": [
-            "Statement (ExportDefaultDeclaration) with side effects in source code at 1:0-6:1"
+            "Statement (ExpressionStatement) with side effects in source code at 2:2-29"
           ],
           "depth": 1
         }
@@ -429,15 +466,15 @@
       "type": "module",
       "moduleType": "javascript/auto",
       "layer": null,
-      "size": 87,
+      "size": 120,
       "sizes": {
-        "javascript": 87
+        "javascript": 120
       },
       "built": true,
       "codeGenerated": false,
       "buildTimeExecuted": false,
       "cached": false,
-      "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/plugin-a.js",
+      "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/plugin-a.js",
       "name": "./src/plugin-a.js",
       "nameForCondition": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/plugin-a.js",
       "index": 1,
@@ -447,11 +484,11 @@
       "cacheable": true,
       "optional": false,
       "orphan": true,
-      "issuer": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+      "issuer": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
       "issuerName": "./src/index.js",
       "issuerPath": [
         {
-          "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+          "identifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
           "name": "./src/index.js",
           "id": null
         }
@@ -462,33 +499,35 @@
       "id": null,
       "issuerId": null,
       "chunks": [],
-      "assets": [],
+      "assets": [
+        "version.txt"
+      ],
       "reasons": [
         {
-          "moduleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+          "moduleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
           "module": "./src/index.js",
           "moduleName": "./src/index.js",
-          "resolvedModuleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+          "resolvedModuleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
           "resolvedModule": "./src/index.js",
           "type": "harmony side effect evaluation",
           "active": true,
           "explanation": "",
           "userRequest": "./plugin-a",
-          "loc": "1:0-33",
+          "loc": "3:2-35",
           "moduleId": null,
           "resolvedModuleId": null
         },
         {
-          "moduleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+          "moduleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
           "module": "./src/index.js",
           "moduleName": "./src/index.js",
-          "resolvedModuleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
+          "resolvedModuleIdentifier": "/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/webpack/loaders/test-loader.js!/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/src/index.js",
           "resolvedModule": "./src/index.js",
           "type": "harmony import specifier",
           "active": true,
           "explanation": "",
           "userRequest": "./plugin-a",
-          "loc": "3:12-24",
+          "loc": "5:12-24",
           "moduleId": null,
           "resolvedModuleId": null
         }
@@ -500,7 +539,7 @@
         "default"
       ],
       "optimizationBailout": [
-        "Statement (ExportDefaultDeclaration) with side effects in source code at 1:0-6:1"
+        "Statement (ExpressionStatement) with side effects in source code at 2:2-29"
       ],
       "depth": 1
     }
@@ -514,14 +553,19 @@
       "assets": [
         {
           "name": "main.js",
-          "size": 106
+          "size": 217
         }
       ],
       "filteredAssets": 0,
-      "assetsSize": 106,
-      "auxiliaryAssets": [],
+      "assetsSize": 217,
+      "auxiliaryAssets": [
+        {
+          "name": "version.txt",
+          "size": 5
+        }
+      ],
       "filteredAuxiliaryAssets": 0,
-      "auxiliaryAssetsSize": 0,
+      "auxiliaryAssetsSize": 5,
       "children": {},
       "childAssets": {},
       "isOverSizeLimit": false
@@ -536,14 +580,19 @@
       "assets": [
         {
           "name": "main.js",
-          "size": 106
+          "size": 217
         }
       ],
       "filteredAssets": 0,
-      "assetsSize": 106,
-      "auxiliaryAssets": [],
+      "assetsSize": 217,
+      "auxiliaryAssets": [
+        {
+          "name": "version.txt",
+          "size": 5
+        }
+      ],
       "filteredAuxiliaryAssets": 0,
-      "auxiliaryAssetsSize": 0,
+      "auxiliaryAssetsSize": 5,
       "children": {},
       "childAssets": {},
       "isOverSizeLimit": false
@@ -551,12 +600,7 @@
   },
   "errors": [],
   "errorsCount": 0,
-  "warnings": [
-    {
-      "message": "configuration\nThe 'mode' option has not been set, webpack will fallback to 'production' for this value.\nSet 'mode' option to 'development' or 'production' to enable defaults for each environment.\nYou can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/",
-      "stack": "NoModeWarning: configuration\nThe 'mode' option has not been set, webpack will fallback to 'production' for this value.\nSet 'mode' option to 'development' or 'production' to enable defaults for each environment.\nYou can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/\n    at /Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/node_modules/webpack/lib/WarnNoModeSetPlugin.js:20:30\n    at Hook.eval [as call] (eval at create (/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:21:1)\n    at Hook.CALL_DELEGATE [as _call] (/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/node_modules/tapable/lib/Hook.js:14:14)\n    at Compiler.newCompilation (/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/node_modules/webpack/lib/Compiler.js:1124:30)\n    at /Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/node_modules/webpack/lib/Compiler.js:1169:29\n    at Hook.eval [as callAsync] (eval at create (/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:6:1)\n    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/node_modules/tapable/lib/Hook.js:18:14)\n    at Compiler.compile (/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/node_modules/webpack/lib/Compiler.js:1164:28)\n    at /Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/node_modules/webpack/lib/Compiler.js:524:12\n    at Compiler.readRecords (/Users/addams/projects/__cus/_Js/build-tools/webpack/webpack-test/node_modules/webpack/lib/Compiler.js:989:5)"
-    }
-  ],
-  "warningsCount": 1,
+  "warnings": [],
+  "warningsCount": 0,
   "children": []
 }
