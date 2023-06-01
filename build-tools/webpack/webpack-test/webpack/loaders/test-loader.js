@@ -9,13 +9,14 @@ const loader = async function (source) {
   const loaderContext = /** @type {LoaderContext} */ (this);
   const options = this.getOptions();
 
+  console.log('hander test-loeader\n');
   const logger = loaderContext.getLogger('test-loader');
   // 错误提示
   //  一般应尽量使用 logger.error，减少对用户的打扰；
   // 对于需要明确警示用户的错误，优先使用 this.emitError；
   // 对于已经严重到不能继续往下编译的错误，使用 callback
-  logger.info(loaderContext.request); // /.../webpack/loaders/test-loader.js!/.../src/plugin-a.js
-  logger.info(loaderContext.resource); // /.../src/plugin-a.js
+  // logger.info(loaderContext.request); // /.../webpack/loaders/test-loader.js!/.../src/plugin-a.js
+  // logger.info(loaderContext.resource); // /.../src/plugin-a.js
   // loaderContext.emitError('test-loader error');
 
   const newSource = `
@@ -52,7 +53,7 @@ loader.pitch = (function (remainingRequest, precedingRequest, data) {
   console.log('🚀 ~ remainingRequest:', remainingRequest)
   console.log('🚀 ~ precedingRequest:', precedingRequest)
   console.log('🚀 ~ data:', data)
-  console.log('pitch ==END==');
+  console.log('pitch ==END==\n');
 })
 
 module.exports = loader;
