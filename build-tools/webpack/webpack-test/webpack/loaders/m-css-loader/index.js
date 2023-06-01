@@ -1,4 +1,5 @@
 const postcss = require('postcss');
+const loaderUtils = require('loader-utils');
 
 /** @typedef { import("webpack").LoaderContext<{}> } LoaderContext */
 
@@ -24,8 +25,9 @@ module.exports = async function loader(content) {
 
   const importRequestPrefix = `-!${loaders
     .slice(loaderIndex, loaderIndex + 1)
-    .map((loader) => loader.request)
+    .map((loader) => loader.request.replaceAll('\\', '/'))
     .join('!')}!`;
+
   let importModuleCode = '';
   let importApiCode = '';
   if (content.includes('@import')) {
@@ -34,7 +36,7 @@ module.exports = async function loader(content) {
   }
 
   const result = `
-  import mCssLoader from '${require.resolve('./runtime.js')}';
+  import mCssLoader from '${require.resolve('./runtime.js').replaceAll('\\', '/')}';
   ${importModuleCode}
 
   const mCssLoaderExport = mCssLoader();
@@ -49,5 +51,5 @@ module.exports = async function loader(content) {
   export default mCssLoaderExport;
   `;
 
-  callback(null, result, res.map);
+  callback(null, result);
 };

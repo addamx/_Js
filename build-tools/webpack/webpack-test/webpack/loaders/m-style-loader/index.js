@@ -1,9 +1,11 @@
+const loaderUtils = require('loader-utils');
+
 const loader = function () {};
 
 loader.pitch = function (remainingRequest) {
   return `
-  import content from "!!${remainingRequest}";
-  import insertStyleApi from "${require.resolve('./runtime.js')}";
+  import content from "!!${remainingRequest.replaceAll('\\', '/')}";
+  import insertStyleApi from "${require.resolve('./runtime.js').replaceAll('\\', '/')}";
 
   insertStyleApi(content);
 
