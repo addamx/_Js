@@ -1,52 +1,67 @@
+// @ts-check
 const postcss = require('postcss');
-const loaderUtils = require('loader-utils');
+const { stringifyRequest } = require('../utils');
 
-/** @typedef { import("webpack").LoaderContext<{}> } LoaderContext */
+/** @typedef { import("webpack").LoaderContext<any> } LoaderContext */
 
 module.exports = async function loader(content) {
-  const { loaders, loaderIndex } = /** @type {LoaderContext} */ (this);
-  const callback = this.async();
+  // @ts-ignore
+  const loaderContext = /** @type {LoaderContext} */ (this);
+  const { async, resourcePath, loaders, loaderIndex } = loaderContext;
+  const callback = async();
+  /** @type {string[]} */
+  const importUrls = [];
 
-  // !postcss 会处理 @import
-  // 但是不会处理 @import url()，并且import的文件不会加进依赖
-  // const res = await postcss([
-  //   require('postcss-import'),
-  //   require('postcss-url'),
-  //   require('postcss-preset-env')({
-  //     stage: 0,
-  //     browsers: 'last 2 versions',
-  //   }),
-  // ]).process(content, {
-  //   from: this.resourcePath,
-  // });
-
-  // content = res.css;
-
+  const postcssRes = await postcss([
+    require('./plugins/postcss-import-parser')({
+      imports: importUrls,
+    }),
+  ]).process(content, {
+    from: resourcePath, // for source-map
+  });
 
   const importRequestPrefix = `-!${loaders
     .slice(loaderIndex, loaderIndex + 1)
-    .map((loader) => loader.request.replaceAll('\\', '/'))
+    .map((loader) => stringifyRequest(loaderContext, loader.request))
     .join('!')}!`;
 
-  let importModuleCode = '';
-  let importApiCode = '';
-  if (content.includes('@import')) {
-    importModuleCode = `import cssModuleA from '${importRequestPrefix}./modulea-a.css';`;
-    importApiCode = `mCssLoaderExport.import(cssModuleA)`;
-  }
+  const resolver = loaderContext.getResolve();
+
+  // './module-a.css' => '/Users/xxx/project/src/module-a.css'
+  const formmattedImportUrls = await Promise.all(
+    importUrls.map((url) =>
+      resolver(loaderContext.context, url).then((url) =>
+        stringifyRequest(loaderContext, url)
+      )
+    )
+  );
+
+  const importModulesCode = formmattedImportUrls
+    .map(
+      (url, index) =>
+        `import CSS_IMPORT_${index} from '${importRequestPrefix}${url}';`
+    )
+    .join('\n');
+
+  const importExecCode = formmattedImportUrls
+    .map(
+      (_, index) => `
+  mCssLoaderExport.import(CSS_IMPORT_${index});
+    `
+    )
+    .join('\n');
 
   const result = `
-  import mCssLoader from '${require.resolve('./runtime.js').replaceAll('\\', '/')}';
-  ${importModuleCode}
+  import mCssLoader from '${stringifyRequest(
+    loaderContext,
+    require.resolve('./runtime.js')
+  )}';
+  ${importModulesCode}
 
   const mCssLoaderExport = mCssLoader();
-  mCssLoaderExport.push([module.id, "${
-    importModuleCode
-      ? 'body {border: 2px solid red;}'
-      : 'body {  background-color: antiquewhite;}'
-  }", ""]);
+  mCssLoaderExport.push([module.id, ${JSON.stringify(postcssRes.css)}, ""]);
 
-  ${importApiCode}
+  ${importExecCode}
 
   export default mCssLoaderExport;
   `;

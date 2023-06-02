@@ -1,5 +1,9 @@
+let styleTag;
+
 module.exports = function (list) {
-  const styleTag = document.createElement('style');
+  if (!styleTag) {
+    styleTag = document.createElement('style');
+    document.head.appendChild(styleTag);
+  }
   styleTag.innerHTML = list.toString();
-  document.head.appendChild(styleTag);
 }

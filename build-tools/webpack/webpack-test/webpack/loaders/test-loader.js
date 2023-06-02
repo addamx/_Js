@@ -9,7 +9,6 @@ const loader = async function (source) {
   const loaderContext = /** @type {LoaderContext} */ (this);
   const options = this.getOptions();
 
-  console.log('hander test-loeader\n');
   const logger = loaderContext.getLogger('test-loader');
   // 错误提示
   //  一般应尽量使用 logger.error，减少对用户的打扰；
@@ -49,11 +48,7 @@ const loader = async function (source) {
 // data: data对象，该对象在normal阶段可以通过this.data获取，可用于传递共享的信息
 
 loader.pitch = (function (remainingRequest, precedingRequest, data) {
-  console.log('pitch ==START==');
-  console.log('🚀 ~ remainingRequest:', remainingRequest)
-  console.log('🚀 ~ precedingRequest:', precedingRequest)
-  console.log('🚀 ~ data:', data)
-  console.log('pitch ==END==\n');
+  //
 })
 
 module.exports = loader;
