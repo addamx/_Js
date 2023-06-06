@@ -1,7 +1,10 @@
 // import pluginA from './plugin-a';
-import './css/app.css'
+// import './css/app.css'
+import App from './App.vue'
+
+console.log('App.vue', App);
 
 // console.log(pluginA.name)
 
 
-console.log('main console!')
+// console.log('main console!')
