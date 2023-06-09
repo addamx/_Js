@@ -2,6 +2,7 @@ const TestPlugin = require('./webpack/plugins/test-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
+const { MVueLoaderPlugin } = require('./webpack/loaders/m-vue-loader');
 
 /**
  * @type {import('webpack').Configuration}
@@ -33,6 +34,10 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
       },
+      // {
+      //   test: /\.vue$/,
+      //   loader: 'm-vue-loader',
+      // },
     ],
   },
   devtool: false,
@@ -46,6 +51,7 @@ module.exports = {
       inject: 'body',
     }),
     new VueLoaderPlugin(),
+    // new MVueLoaderPlugin(),
   ],
   // npm webpack-dev-server
   devServer: {
