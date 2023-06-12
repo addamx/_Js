@@ -1,5 +1,4 @@
-const webpack = require('webpack');
-const { Compiler, Compilation } = require('webpack');
+const { Compiler } = require('webpack');
 const qs = require('querystring');
 
 const PLUGIN_ID = 'MVueLoaderPlugin';
@@ -51,7 +50,7 @@ class MVueLoaderPlugin {
           resourceQuery(query) {
             if (!query) return false;
             const parsedQueryObj = qs.parse(query.slice(1));
-            if (parsed.vue == null) {
+            if (parsedQueryObj.vue == null) {
               return false;
             }
             // .../app.vue => ../app.vue.js

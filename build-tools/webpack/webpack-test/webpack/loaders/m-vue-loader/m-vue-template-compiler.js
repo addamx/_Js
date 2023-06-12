@@ -3,7 +3,7 @@ module.exports = {
     const sfc = {
       template: null,
       script: null,
-      syltes: [],
+      styles: [],
     };
 
     const res =
@@ -12,6 +12,7 @@ module.exports = {
     let match;
     while ((match = res.exec(content))) {
       const [
+        _,
         template,
         templateContent,
         script,
@@ -35,6 +36,7 @@ module.exports = {
         sfc[type] = block;
       }
     }
+    return sfc;
   },
 };
 

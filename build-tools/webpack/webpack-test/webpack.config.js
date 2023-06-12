@@ -4,6 +4,9 @@ const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const { MVueLoaderPlugin } = require('./webpack/loaders/m-vue-loader');
 
+const isCus = !!process.env.CUS;
+console.log('🚀 ~ isCus:', isCus);
+
 /**
  * @type {import('webpack').Configuration}
  */
@@ -17,30 +20,32 @@ module.exports = {
           // {
           // loader: './webpack/loaders/test-loader.js'
           // },
-          'cus-loader',
-          'test-loader',
+          // 'cus-loader',
+          // 'test-loader',
         ],
       },
       {
         test: /\.css$/,
         use: [
-          // 'style-loader',
-          'm-style-loader',
-          // 'css-loader'
-          'm-css-loader',
+          'style-loader',
+          // 'm-style-loader',
+          'css-loader'
+          // 'm-css-loader',
         ],
       },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-      },
-      // {
-      //   test: /\.vue$/,
-      //   loader: 'm-vue-loader',
-      // },
+
+      isCus
+        ? {
+            test: /\.vue$/,
+            loader: 'm-vue-loader',
+          }
+        : {
+            test: /\.vue$/,
+            loader: 'vue-loader',
+          },
     ],
   },
-  devtool: false,
+  devtool: 'eval-source-map',
   resolveLoader: {
     modules: ['node_modules', './webpack/loaders'], // 指定webpack去哪些目录下查找loader（有先后顺序）
   },
@@ -50,8 +55,7 @@ module.exports = {
       template: './public/index.html',
       inject: 'body',
     }),
-    new VueLoaderPlugin(),
-    // new MVueLoaderPlugin(),
+    isCus ? new MVueLoaderPlugin() : new VueLoaderPlugin(),
   ],
   // npm webpack-dev-server
   devServer: {
