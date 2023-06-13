@@ -3,7 +3,7 @@
 import App from './App.vue'
 import Vue from 'vue'
 
-console.log('App.vue', App);
+console.log('App.vue13', App);
 
 // console.log(pluginA.name)
 // console.log('main console!')

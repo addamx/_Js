@@ -11,8 +11,8 @@ module.exports = {
     }
   },
   rerender(options, render, staticRenderFns) {
-    optoins.render = render;
-    optoins.staticRenderFns = staticRenderFns;
+    options.render = render;
+    options.staticRenderFns = staticRenderFns;
     const ctor = map.get(options)
     ctor.instances.forEach(instance => {
       instance.$forceUpdate()

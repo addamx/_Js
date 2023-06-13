@@ -1,6 +1,6 @@
 <template>
   <div class="app-class">
-    {{appTitle}}1xxx
+    {{appTitle}}24
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style>
-.app-class {
-  color: red;
+body{
+  color: green;
 }
 </style>
