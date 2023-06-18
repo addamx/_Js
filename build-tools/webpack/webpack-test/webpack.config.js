@@ -1,6 +1,5 @@
 const TestPlugin = require('./webpack/plugins/test-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { VueLoaderPlugin } = require('vue-loader');
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const { MVueLoaderPlugin } = require('./webpack/loaders/m-vue-loader');
