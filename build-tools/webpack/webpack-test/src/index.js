@@ -1,9 +1,13 @@
 // import pluginA from './plugin-a';
-import './css/app.css'
-import app from './components/app.vue';
+// import './css/app.css'
+import App from './App.vue'
+import Vue from 'vue'
+
+console.log('App.vue13', App);
 
 // console.log(pluginA.name)
+// console.log('main console!')
 
-
-console.log('main console!')
-console.log(app);
+new Vue({
+  render: h => h(App)
+}).$mount('#app')

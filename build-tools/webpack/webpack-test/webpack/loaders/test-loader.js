@@ -16,7 +16,7 @@ const loader = async function (source) {
   // 对于已经严重到不能继续往下编译的错误，使用 callback
   // logger.info(loaderContext.request); // /.../webpack/loaders/test-loader.js!/.../src/plugin-a.js
   // logger.info(loaderContext.resource); // /.../src/plugin-a.js
-  // loaderContext.emitError('test-loader error');
+  // loaderContext.emitError(new Error('test-loader error'));
 
   const newSource = `
   /** Insert Comment by Test-loader */;
