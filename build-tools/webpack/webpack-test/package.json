@@ -6,7 +6,7 @@
   "scripts": {
     "serve": "webpack serve --mode=development",
     "inspect": "node --inspect node_modules/webpack/bin/webpack.js --mode=development",
-    "inspect-cus": "CUS=1 node --inspect node_modules/webpack/bin/webpack.js serve --mode=development",
+    "inspect-cus": "CUS=1 node --inspect node_modules/webpack/bin/webpack.js --mode=development",
     "inspect-brk": "node --inspect-brk node_modules/webpack/bin/webpack.js --mode=development",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"

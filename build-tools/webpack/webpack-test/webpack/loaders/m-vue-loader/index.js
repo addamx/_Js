@@ -104,10 +104,17 @@ import normalizer from "${stringifyRequest(
   if (module.hot) {
     const api = require('${require.resolve('./hot/vue-hot-reload-api')}')
     module.hot.accept();
-    api.createRecord(component.options);
+    
+    if (!api.isRecorded(component.options)) {
+      api.createRecord(component.options);
+    } else {
+      api.reload(component.options);
+    }
     module.hot.accept('${templateRequest}', function () {
       console.log('vue-loader 热更新');
-      api.rerender(component.options, render, staticRenderFns);
+      api.rerender(component.options, {
+        render, staticRenderFns
+      });
     });
   }
   console.log('[normalizer]');

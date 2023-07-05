@@ -58,7 +58,7 @@ typings/
 .env
 
 # other
-.vscode
+# .vscode
 /**/dist/
 /**/build
 /**/built

@@ -1,6 +1,6 @@
 // import pluginA from './plugin-a';
 // import './css/app.css'
-import App from './App.vue'
+import App from './app.vue'
 import Vue from 'vue'
 
 console.log('App.vue13', App);

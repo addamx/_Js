@@ -1,6 +1,6 @@
 <template>
   <div class="app-class">
-    {{appTitle}}24
+    {{appTitle}}信息124312
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      appTitle: 'Hello World'
+      appTitle: 'Hello aa111'
     }
   }
 }
