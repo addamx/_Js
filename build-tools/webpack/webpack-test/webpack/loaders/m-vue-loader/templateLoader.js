@@ -11,7 +11,6 @@ module.exports = function (source) {
   }
   var staticRenderFns = []
   render._withStripped = true;
-  console.log('[templateLoader]gen-render');
   export { render, staticRenderFns };
   `;
 

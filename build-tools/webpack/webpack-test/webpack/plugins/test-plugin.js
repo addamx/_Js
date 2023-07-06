@@ -15,7 +15,7 @@ class TestPlugin {
         compilation.hooks.processAssets.tap(
           'TestPlugin',
           (CompilationAssets) => {
-            const cusContent = 'console.log("Hello, world!");';
+            const cusContent = '// console.log("Hello, world!");';
             const mainSource = compilation.getAsset('main.js').source;
 
             /**
@@ -34,7 +34,7 @@ class TestPlugin {
             /**
              * 往Entry插入代码
              */
-            this.addToEntryJs(compilation, 'console.log("addToEntryJs")');
+            this.addToEntryJs(compilation, '// console.log("addToEntryJs")');
           }
         );
       }

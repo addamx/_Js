@@ -2,6 +2,7 @@ const plugin = require('./plugin');
 const { stringifyRequest } = require('../utils');
 const qs = require('querystring');
 const path = require('path');
+const hash = require('hash-sum');
 
 let errorEmitted = false;
 
@@ -22,6 +23,8 @@ const loader = function (content) {
   const rawQuery = resourceQuery.slice(1);
   const inheritQuery = `&${rawQuery}`;
   const incomingQuery = qs.parse(rawQuery);
+  const shortResourcePath = path.relative(process.cwd(), resourcePath);
+  const id = hash(shortResourcePath);
 
   // < 2.7 vue-template-compiler
   const compiler = require('./m-vue-template-compiler');
@@ -104,15 +107,15 @@ import normalizer from "${stringifyRequest(
   if (module.hot) {
     const api = require('${require.resolve('./hot/vue-hot-reload-api')}')
     module.hot.accept();
-    
-    if (!api.isRecorded(component.options)) {
-      api.createRecord(component.options);
+
+    if (!api.isRecorded("${id}")) {
+      api.createRecord("${id}", component.options);
     } else {
-      api.reload(component.options);
+      api.reload("${id}", component.options);
     }
     module.hot.accept('${templateRequest}', function () {
       console.log('vue-loader 热更新');
-      api.rerender(component.options, {
+      api.rerender("${id}", component.options, {
         render, staticRenderFns
       });
     });

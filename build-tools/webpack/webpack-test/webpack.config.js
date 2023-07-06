@@ -60,7 +60,7 @@ module.exports = {
   ],
   // npm webpack-dev-server
   devServer: {
-    port: process.env.PORT || 4234,
+    port: process.env.PORT || isCus ? 4234 : 4235,
     open: false,
     static: {
       directory: path.join(__dirname, '../public'),
