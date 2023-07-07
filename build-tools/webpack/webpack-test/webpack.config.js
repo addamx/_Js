@@ -46,7 +46,7 @@ module.exports = {
           },
     ],
   },
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
   resolveLoader: {
     modules: ['node_modules', './webpack/loaders'], // 指定webpack去哪些目录下查找loader（有先后顺序）
   },

@@ -106,13 +106,13 @@ import normalizer from "${stringifyRequest(
   /* hot reload */
   if (module.hot) {
     const api = require('${require.resolve('./hot/vue-hot-reload-api')}')
-    module.hot.accept();
-
     if (!api.isRecorded("${id}")) {
       api.createRecord("${id}", component.options);
     } else {
       api.reload("${id}", component.options);
     }
+    module.hot.accept(); // 重新加载完成全量更新
+    // 只针对模板的热更新
     module.hot.accept('${templateRequest}', function () {
       console.log('vue-loader 热更新');
       api.rerender("${id}", component.options, {
@@ -120,7 +120,6 @@ import normalizer from "${stringifyRequest(
       });
     });
   }
-  console.log('[normalizer]');
 
   export default component.exports;
   `;
