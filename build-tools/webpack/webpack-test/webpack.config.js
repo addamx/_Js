@@ -46,7 +46,7 @@ module.exports = {
           },
     ],
   },
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
   resolveLoader: {
     modules: ['node_modules', './webpack/loaders'], // 指定webpack去哪些目录下查找loader（有先后顺序）
   },
@@ -60,7 +60,7 @@ module.exports = {
   ],
   // npm webpack-dev-server
   devServer: {
-    port: process.env.PORT || 4234,
+    port: process.env.PORT || isCus ? 4234 : 4235,
     open: false,
     static: {
       directory: path.join(__dirname, '../public'),
