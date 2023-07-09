@@ -1,0 +1,30 @@
+{
+  "name": "vue-tmp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "server": "SERVER=1 webpack --mode=development",
+    "client": "webpack serve --mode=development",
+    "inspect": "node --inspect node_modules/webpack/bin/webpack.js --mode=development",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "css-loader": "^6.8.1",
+    "express": "^4.18.2",
+    "html-webpack-plugin": "^5.5.1",
+    "loader-utils": "^3.2.1",
+    "style-loader": "^3.3.3",
+    "vue-loader": "15.10.1",
+    "vue-server-renderer": "^2.7.14",
+    "vue-template-compiler": "2.6.14",
+    "webpack": "^5.82.0",
+    "webpack-cli": "^5.1.1",
+    "webpack-dev-server": "^4.15.0"
+  },
+  "dependencies": {
+    "vue": "^2.7.14",
+    "vue-router": "^4.2.4"
+  }
+}
