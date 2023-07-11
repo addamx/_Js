@@ -24,8 +24,7 @@ module.exports = {
           // {
           // loader: './webpack/loaders/test-loader.js'
           // },
-          // 'cus-loader',
-          // 'test-loader',
+          'test-loader',
         ],
       },
       {
