@@ -2,6 +2,11 @@
 
 - `webpack --json` 输出打包信息
 
+```cmd
+yarn analyze
+npx webpack-bundle-analyzer stats.json
+```
+
 # webpack
 
 - webpack(options, callback)

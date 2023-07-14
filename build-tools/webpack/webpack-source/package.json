@@ -9,6 +9,7 @@
     "inspect-cus": "CUS=1 node --inspect node_modules/webpack/bin/webpack.js --mode=development",
     "inspect-brk": "node --inspect-brk node_modules/webpack/bin/webpack.js --mode=development",
     "build": "webpack",
+    "analyze": "webpack --profile --json > stats.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
