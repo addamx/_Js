@@ -3,7 +3,20 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "serve": "webpack serve --mode=development",
+    "build": "webpack --mode=development",
+    "inspect": "node --inspect node_modules/webpack/bin/webpack.js --mode=development",
+    "inspect-brk": "node --inspect-brk node_modules/webpack/bin/webpack.js --mode=development"
+  },
   "devDependencies": {
+    "css-loader": "^6.8.1",
+    "hex-to-hsl": "^1.0.2",
+    "hsl-to-hex": "^1.0.0",
+    "mini-css-extract-plugin": "^2.7.6",
+    "postcss-scss": "^4.0.6",
+    "sass": "^1.63.6",
+    "sass-loader": "^13.3.2",
     "webpack": "^5.88.1",
     "webpack-cli": "^5.1.4"
   }
