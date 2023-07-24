@@ -1,0 +1,14 @@
+{
+  "name": "babel-base",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@babel/generator": "^7.22.9",
+    "@babel/parser": "^7.22.7",
+    "@babel/traverse": "^7.22.8",
+    "@babel/types": "^7.22.5",
+    "@types/babel-core": "^6.25.7"
+  }
+}
