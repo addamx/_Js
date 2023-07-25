@@ -46,6 +46,7 @@ exports.babelPlugin = function ({ generate, types, template }, path) {
 
         if (path.findParent((path) => path.isJSXElement())) {
           path.replaceWith(types.arrayExpression([newNode, path.node]));
+          // path.replaceWithSourceString("console.log('filename: (line: 1, column: 1)')");
           path.skip();
         } else {
           path.insertBefore(newNode);
