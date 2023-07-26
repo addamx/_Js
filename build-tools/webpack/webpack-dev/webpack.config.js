@@ -1,6 +1,4 @@
 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
 /**
  * @type {import('webpack').Configuration}
  */
@@ -16,7 +14,6 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader',
-          'sass-theme-loader'
         ]
       }
     ],
@@ -28,7 +25,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin(),
-    // new require('./plugins/scss-theme-variable-plugin.js')
+    // new require('mini-css-extract-plugin')(),
   ]
 }
