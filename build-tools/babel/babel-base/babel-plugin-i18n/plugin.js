@@ -72,6 +72,7 @@ module.exports = declare((api, options, dirname) => {
       Program: {
         enter(path, state) {
           let imported;
+          // 获取intl
           path.traverse({
             ImportDeclaration(p) {
               const source = p.node.source.value;
@@ -83,7 +84,8 @@ module.exports = declare((api, options, dirname) => {
           });
           if (!imported) {
             const uid = path.scope.generateUid("intl"); // 根据作用于生成 uid， 如果intl已经
-            importModule.addDefault(path, "intl", {
+            const importStatement = importModule.addDefault(path, "intl", {
+              importedType: 'es6',
               nameHint: uid,
             });
             state.intlUid = uid;
@@ -116,6 +118,7 @@ module.exports = declare((api, options, dirname) => {
         },
       },
       StringLiteral(p, state) {
+        return;
         // @ts-ignore
         if (p.node.skipTransform) return;
         let key = nextIntlKey();
@@ -131,6 +134,7 @@ module.exports = declare((api, options, dirname) => {
         p.skip();
       },
       TemplateLiteral(p, state) {
+        return;
         // @ts-ignore
         if (p.node.skipTransform) return;
         const value = p
