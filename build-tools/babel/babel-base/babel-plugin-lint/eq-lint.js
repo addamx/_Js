@@ -34,7 +34,6 @@ module.exports = declare((api, options, dirname) => {
             );
             Error.stackTraceLimit = tmp;
 
-            // state.opts 获取选项
             if (options.fix) {
               path.node.operator = path.node.operator + "=";
             }
