@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "babel-plugin-i18n/test",
+      "name": "i18n",
       "program": "${workspaceFolder}/babel-plugin-i18n/test/test.js",
       "request": "launch",
       "skipFiles": [
@@ -14,8 +14,26 @@
       "type": "node"
     },
     {
-      "name": "babel-plugin-document/test",
+      "name": "document",
       "program": "${workspaceFolder}/babel-plugin-document/test/test.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    {
+      "name": "js-interpreter",
+      "program": "${workspaceFolder}/babel-js-interpreter/index.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    {
+      "name": "module-iterator",
+      "program": "${workspaceFolder}/babel-module-iterator/iterator/index.js",
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
