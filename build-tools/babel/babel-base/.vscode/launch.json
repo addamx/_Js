@@ -41,6 +41,15 @@
       "type": "node"
     },
     {
+      "name": "macro",
+      "program": "${workspaceFolder}/babel-macro/src/index.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    {
       "name": "Attach by Process ID",
       "processId": "${command:PickProcess}",
       "request": "attach",
