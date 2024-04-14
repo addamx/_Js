@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<button onclick="main()">Create Video</button>
+
+
+<script>
+  // Create dummy frames
+  const canvas = document.createElement('canvas');
+  canvas.width = 256;
+  canvas.height = 256;
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+
+  function getRandomRgb() {
+    var num = Math.round(0xffffff * Math.random());
+    var r = num >> 16;
+    var g = num >> 8 & 255;
+    var b = num & 255;
+    return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+  }
+
+  async function main() {
+    // create media generator track
+    const generator = new MediaStreamTrackGenerator({kind: 'video'});
+    const writer = generator.writable.getWriter();
+    const stream = new MediaStream();
+    stream.addTrack(generator);
+
+    // init media recorder
+    const recordedChunks = [];
+
+    const mediaRecorder = new MediaRecorder(stream, {
+      mimeType: "video/webm",
+      videoBitsPerSecond: 3_000_000 // 3MBps
+    });
+
+    mediaRecorder.addEventListener('dataavailable', (event) => {
+      recordedChunks.push(event.data);
+    });
+    mediaRecorder.addEventListener('stop', (event) => {
+      stream.getTracks().forEach(track => track.stop());
+
+      const blob = new Blob(recordedChunks, {type: mediaRecorder.mimeType});
+      const url = URL.createObjectURL(blob);
+
+      const video = document.createElement('video');
+      video.src = url;
+      document.body.appendChild(video);
+      video.setAttribute('controls', 'true')
+      video.play().catch(e => alert(e.message))
+    });
+
+    mediaRecorder.start();
+
+    const fps = 30;
+
+    for (let i = 0; i < 10; i++) {
+      await new Promise(resolve => setTimeout(resolve, 1000)) // 1 second
+
+      ctx.rect(0, 0, 256, 256);
+      ctx.fillStyle = getRandomRgb();
+      ctx.fill();
+
+      const ms = 1_000_000; // 1µs
+      const frame = new VideoFrame(await createImageBitmap(canvas), {
+        // TODO timestamp is not actually respected!
+        timestamp: (ms * 1) / fps, // Timestamp in µs
+        duration: ms / fps,
+      });
+
+      await writer.write(frame);
+      frame.close();
+    }
+
+    mediaRecorder.stop();
+  }
+
+</script>
+</body>
+</html>

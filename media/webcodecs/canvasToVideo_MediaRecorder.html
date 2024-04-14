@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas to MP4 Recording</title>
+</head>
+<body>
+<canvas id="animationCanvas" width="800" height="600"></canvas>
+<button id="startRecording">Start Recording</button>
+<button id="stopRecording" disabled>Stop Recording</button>
+<a id="downloadLink" style="display: none;">Download</a>
+
+<script>
+  const canvas = document.getElementById('animationCanvas');
+  const ctx = canvas.getContext('2d');
+  let recording = false;
+  let mediaRecorder;
+  let recordedChunks = [];
+  let startTime = null;
+
+  function drawCanvas() {
+    // 在此处绘制 Canvas 动画帧
+    // 示例：绘制一个简单的旋转矩形
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(50, 50, 100, 100);
+    ctx.save();
+    ctx.translate(canvas.width / 2, canvas.height / 2);
+    // angle: degree * Math.PI / 180
+    const angle = ((Date.now() - startTime) / 1000) * 15 * Math.PI / 180;
+    ctx.rotate(angle);
+    ctx.translate(-canvas.width / 2, -canvas.height / 2);
+    ctx.fillRect(250, 250, 100, 100);
+    ctx.restore();
+  }
+
+  function startRecording() {
+    if (!recording) {
+      recording = true;
+
+      // 创建 MediaStream 对象，从 Canvas 中获取视频轨道
+      const stream = canvas.captureStream(30); // 帧率设为 30fps
+
+      // 初始化 MediaRecorder，指定输出格式为 MP4（具体支持情况取决于浏览器和服务器）
+      mediaRecorder = new MediaRecorder(stream, {
+        mimeType: 'video/webm',
+      });
+
+      mediaRecorder.addEventListener('dataavailable', (event) => {
+        if (event.data.size > 0) {
+          recordedChunks.push(event.data);
+        }
+      });
+
+      mediaRecorder.addEventListener('stop', () => {
+        // 结束录制时，将所有数据片段合并成一个完整的 Blob
+        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+        recordedChunks = [];
+
+        // 生成下载链接
+        const downloadUrl = URL.createObjectURL(blob);
+        document.getElementById('downloadLink').href = downloadUrl;
+        document.getElementById('downloadLink').style.display = 'inline';
+        document.getElementById('stopRecording').disabled = true;
+      });
+
+      mediaRecorder.start();
+
+      document.getElementById('stopRecording').disabled = false;
+      document.getElementById('startRecording').disabled = true;
+      startTime = Date.now();
+      setInterval(drawCanvas, 1000 / 30); // 按照帧率更新 Canvas 内容
+    }
+  }
+
+  function stopRecording() {
+    if (recording) {
+      mediaRecorder.stop();
+      recording = false;
+    }
+  }
+  // startTime = Date.now();
+  // setInterval(drawCanvas, 1000 / 30);
+
+  document.getElementById('startRecording').addEventListener('click', startRecording);
+  document.getElementById('stopRecording').addEventListener('click', stopRecording);
+</script>
+</body>
+</html>
