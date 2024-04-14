@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #video {
+      border: 1px solid #999;
+      width: 98%;
+      max-width: 860px;
+    }
+
+    #log {
+      width: 25rem;
+      height: 15rem;
+      border: 1px solid black;
+      padding: 0.5rem;
+      overflow: scroll;
+    }
+  </style>
+</head>
+<body>
+<p>
+  This example shows you the contents of the selected part of your display.
+  Click the Start Capture button to begin.
+</p>
+
+<p>
+  <select id="source">
+    <option value="user">User</option>
+    <option value="display">Display</option>
+  </select>
+  <select id="surface">
+    <option value="browser">Browser 浏览器</option>
+    <option value="window">Window 窗口</option>
+    <option value="monitor">Monitor 屏幕</option>
+  </select>
+  <button id="start">Start Capture</button>&nbsp;<button id="stop">
+  Stop Capture
+</button>
+</p>
+
+<video id="video" autoplay></video>
+<br/>
+
+<strong>Log:</strong>
+<br/>
+<pre id="log"></pre>
+
+<script>
+  const videoElem = document.getElementById("video");
+  const logElem = document.getElementById("log");
+  const startElem = document.getElementById("start");
+  const stopElem = document.getElementById("stop");
+  const sourceElem = document.getElementById("source");
+  const surfaceElem = document.getElementById("surface");
+
+
+  // Set event listeners for the start and stop buttons
+  startElem.addEventListener(
+    "click",
+    (evt) => {
+      startCapture();
+    },
+    false,
+  );
+
+  stopElem.addEventListener(
+    "click",
+    (evt) => {
+      stopCapture();
+    },
+    false,
+  );
+
+  async function startCapture() {
+    logElem.innerHTML = "";
+
+    try {
+      const {streams} = await getMediaStream(sourceElem.value)({
+        video: {
+          displaySurface: surfaceElem.value,
+        },
+        audio: false,
+      });
+      videoElem.srcObject = streams;
+      dumpOptionsInfo();
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  /**
+   * 选择分享流(本地视频流) / 捕获用户许可的输入信号流
+   * @param type 'user' | 'display'
+   * @returns Promise
+   */
+  function getMediaStream(type = 'display') {
+    const runFnMap =
+      type === 'display' ? 'getDisplayMedia' : 'getUserMedia';
+    return async (constraints) => {
+      if (navigator.mediaDevices[runFnMap]) {
+        const _constraints = constraints || {
+          video: true,
+          audio: {
+            noiseSuppression: true,
+            echoCancellation: true,
+            enableBackground: false,
+            suppressLocalAudioPlayback: true,
+          },
+        };
+        const streams = await navigator.mediaDevices[runFnMap](_constraints);
+        return {
+          streams,
+          close() {
+            streams.getTracks().forEach((track) => {
+              track.stop();
+            });
+          },
+        };
+      } else {
+        console.error('不支持mediaDevices');
+        return null;
+      }
+    };
+  }
+
+  function stopCapture(evt) {
+    let tracks = videoElem.srcObject.getTracks();
+
+    tracks.forEach((track) => track.stop());
+    videoElem.srcObject = null;
+  }
+
+  function dumpOptionsInfo() {
+    const videoTrack = videoElem.srcObject.getVideoTracks()[0];
+
+    const log = (msg) => (logElem.textContent = `${logElem.textContent}\n${msg}`);
+    const error = (msg) =>
+      (logElem.textContent = `${logElem.textContent}\nError: ${msg}`);
+
+    log("Track settings:");
+    log(JSON.stringify(videoTrack.getSettings(), null, 2));
+    log("Track constraints:");
+    log(JSON.stringify(videoTrack.getConstraints(), null, 2));
+  }
+
+</script>
+</body>
+</html>
